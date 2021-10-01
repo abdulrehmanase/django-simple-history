@@ -117,7 +117,7 @@ class HistoricalRecords(object):
         self.cls = cls
         models.signals.class_prepared.connect(self.finalize, weak=False)
         self.add_extra_methods(cls)
-
+        self.setup_m2m_history(cls)#m2m change
         if cls._meta.abstract and not self.inherit:
             msg = (
                 "HistoricalRecords added to abstract model ({}) without "
